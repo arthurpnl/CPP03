@@ -5,14 +5,15 @@
 #include <string>
 #include "ClapTrap.hpp"
 
-Class ScavTrap : public ClapTrap
+class ScavTrap : public ClapTrap
 {
     private:
 
     public:
-        ScavTrap();
+        ScavTrap(std::string name);
         ~ScavTrap();
         void guardGate();
+        void    attack(const std::string &target);
 };
 
 
