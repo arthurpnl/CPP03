@@ -9,6 +9,22 @@ ClapTrap::ClapTrap (std::string name)
     std::cout << "ClapTrap " << this->_name << " created!" << std::endl;
 }
 
+ClapTrap::ClapTrap(const ClapTrap &cpy)
+{
+    *this = cpy;
+    std::cout << "ClapTrap copy constructor called!" << std::endl;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &cpy)
+{
+    this->_name = cpy._name;
+    this->_hitPoints = cpy._hitPoints;
+    this->_energyPoints = cpy._energyPoints;
+    this->_attackDamage = cpy._attackDamage;
+    std::cout << "ClapTrap assignment operator called!" << std::endl;
+    return (*this);
+}
+
 ClapTrap::~ClapTrap()
 {
     std::cout << "ClapTrap " << this->_name << " destroyed!" << std::endl;

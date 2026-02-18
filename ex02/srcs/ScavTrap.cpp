@@ -9,6 +9,17 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
     this->_attackDamage = 20;
     std::cout << "ScavTrap " << this->_name << " created!" << std::endl;
 }
+ScavTrap::ScavTrap(const ScavTrap &cpy) : ClapTrap(cpy)
+{
+    std::cout << "ScavTrap copy constructor called!" << std::endl;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &cpy)
+{
+    ClapTrap::operator=(cpy);
+    std::cout << "ScavTrap assignment operator called!" << std::endl;
+    return (*this);
+}
 
 ScavTrap::~ScavTrap()
 {
