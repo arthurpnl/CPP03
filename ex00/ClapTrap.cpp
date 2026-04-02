@@ -30,17 +30,17 @@ ClapTrap::~ClapTrap()
     std::cout << "ClapTrap " << this->_name << " destroyed!" << std::endl;
 }
 
-std::string ClapTrap::getName()
+std::string ClapTrap::getName() const
 {
     return (this->_name);
 }
 
-int ClapTrap::getEnergyPoints()
+unsigned int ClapTrap::getEnergyPoints() const
 {
     return (this->_energyPoints);
 }
 
-int ClapTrap::getTakeDamage()
+unsigned int ClapTrap::getTakeDamage() const
 {
     return (this->_attackDamage);
 }
@@ -74,7 +74,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void    ClapTrap::beRepaired(unsigned int amount)
 {
-    if (this->_hitPoints == 0 || this->_energyPoints == 0)
+    if (this->_hitPoints == 0 || this->_energyPoints < 1)
     {
         std::cout << "ClapTrap " << this->_name << " can't repair, not enough energy or health!" << std::endl;
         return ;
