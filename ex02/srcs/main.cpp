@@ -3,42 +3,40 @@
 
 int main(void)
 {
-    // Test construction chaining
-    std::cout << "=== CREATION ===" << std::endl;
+    std::cout << "=== CONSTRUCTION ===" << std::endl;
     FragTrap a("Xavier");
-    FragTrap b("Niel");
-    ScavTrap c("Robot");
+    ScavTrap b("Niel");
 
-    // Test attaque FragTrap
+    std::cout << "\n=== COPY & ASSIGN ===" << std::endl;
+    {
+        FragTrap c(a);
+        ScavTrap d("Boris");
+        d = b;
+        std::cout << "--- end of copy/assign scope ---" << std::endl;
+    }
+
     std::cout << "\n=== COMBAT ===" << std::endl;
     a.attack(b.getName());
     b.takeDamage(a.getTakeDamage());
     b.beRepaired(10);
-
-    // Test high five
-    std::cout << "\n=== HIGH FIVE ===" << std::endl;
-    a.highFiveGuys();
-    b.highFiveGuys();
-
-    // Comparer ScavTrap et FragTrap
-    std::cout << "\n=== SCAVTRAP VS FRAGTRAP ===" << std::endl;
-    c.attack(a.getName());
-    a.takeDamage(c.getTakeDamage());
-    c.guardGate();
-
-    // Tuer Niel et tester actions sur un mort
-    std::cout << "\n=== KILL TEST ===" << std::endl;
-    b.takeDamage(200);
     b.attack(a.getName());
-    b.beRepaired(5);
-    b.highFiveGuys();
+    a.takeDamage(b.getTakeDamage());
 
-    // Epuiser l'énergie de Xavier
-    std::cout << "\n=== ENERGY TEST ===" << std::endl;
-    for (int i = 0; i < 101; i++)
-        a.attack(b.getName());
+    std::cout << "\n=== SPECIAL ABILITIES ===" << std::endl;
+    a.highFivesGuys();
+    b.guardGate();
 
-    // Test destruction chaining (ordre inverse)
+    std::cout << "\n=== ENERGY DEPLETION (ScavTrap) ===" << std::endl;
+    while (b.getEnergyPoints() > 0)
+        b.attack(a.getName());
+    b.attack(a.getName());
+
+    std::cout << "\n=== DEAD UNIT ===" << std::endl;
+    a.takeDamage(200);
+    a.attack(b.getName());
+    a.beRepaired(5);
+    a.highFivesGuys();
+
     std::cout << "\n=== DESTRUCTION ===" << std::endl;
     return 0;
 }
